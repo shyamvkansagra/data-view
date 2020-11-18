@@ -4,26 +4,20 @@ import React from 'react';
 import Row from './Row';
 
 // Import data API
-import DataAPIs from '../server-simulation/server';
+// import DataAPIs from '../server-simulation/server';
 
 class DataTable extends React.Component {
-	state = {
-		dataRows: [],
-		limit: 10,
-		offset: 0
-	};
-
-	componentDidMount() {
-		const albumData = DataAPIs.getData(10, 0);
-		this.setState({ dataRows: albumData });
-	}
-
 	render() {
-		const { dataRows } = this.state;
+		const { rows, columns } = this.props;
 		return (
 			<div>
 				<h3>Data table rows</h3>
-				<div>{dataRows.map(dr => (
+				<div className="data-table-header">
+					{columns.map(ctr => (
+						<span>{ctr.label}</span>
+					))}
+				</div>
+				<div>{rows.map(dr => (
 					<Row key={dr.id} rowData={dr} />
 				))}</div>
 			</div>

@@ -6,16 +6,106 @@ import DataTable from '../datatable';
 // Import data API
 import DataAPIs from '../server-simulation/server';
 
+const sampleColumns = [
+	{
+		"id": 1,
+		"label": "Product",
+		"numeric": false,
+		"width": "10px"
+	},
+	{
+		"id": 2,
+		"label": "Price",
+		"numeric": true,
+		"width": "10px"
+	}
+];
+
+const sampleRows = [
+	{
+		"id": 1,
+		"product": "abc",
+		"price": 15.2
+	},
+	{
+		"id": 2,
+		"product": <div><span>React node product</span></div>,
+		"price": "$15.5"
+	}
+];
+
+
+const columns = [
+	{
+		"id": 1,
+		"label": "Album ID",
+		"numeric": true,
+		"width": "10px"
+	},
+	{
+		"id": 2,
+		"label": "ID",
+		"numeric": true,
+		"width": "10px"
+	},
+	{
+		"id": 3,
+		"label": "Thumbnail",
+		"numeric": false,
+		"width": "10px"
+	},
+	{
+		"id": 4,
+		"label": "Title",
+		"numeric": false,
+		"width": "10px"
+	},
+	{
+		"id": 5,
+		"label": "Link",
+		"numeric": true,
+		"width": "10px"
+	}
+];
+
 class Page extends Component {
-	
+	state = {
+		dataRows: [],
+		limit: 10,
+		offset: 0,
+		view: "real",
+		isLoaded: false
+	};
+
 	componentDidMount() {
-		DataAPIs.loadAll();
+		DataAPIs.loadAll(() => {
+			const albumData = DataAPIs.getData(10, 0);
+			this.setState({ isLoaded: true, dataRows: albumData });			
+		});
+	}
+
+	switchView = () => {
+		this.setState({ view: this.state.view === "sample" ? "real" : "sample" });
 	}
 
 	render() {
+		const { view, dataRows, isLoaded } = this.state;
+		const columnsToShow = view === "sample" ? sampleColumns : columns;
+		const rowsToShow = view === "sample" ? sampleRows : dataRows;
+		if (!isLoaded) {
+			return (
+				<div>Loading...</div>
+			);
+		}
 		return (
 			<div>
-				<DataTable />
+				<button onClick={this.switchView}>Switch sample/real data</button>
+				<DataTable
+					columns={columnsToShow}
+					rows={rowsToShow}
+					onRowClick={() => {}}
+					onSelectionChange={() => {}}
+				/>
 			</div>
 		);
 	}
