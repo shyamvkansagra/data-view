@@ -94,6 +94,10 @@ class Page extends Component {
 		this.setState({ view: this.state.view === "sample" ? "real" : "sample" });
 	}
 
+	onRowClick = (rowData, rowIndex) => {
+		alert("You clicked row no: " + rowIndex + "\nData: " + JSON.stringify(rowData));
+	}
+
 	render() {
 		const { view, dataRows, isLoaded } = this.state;
 		const columnsToShow = view === "sample" ? sampleColumns : columns;
@@ -109,7 +113,7 @@ class Page extends Component {
 				<DataTable
 					columns={columnsToShow}
 					rows={rowsToShow}
-					onRowClick={() => {}}
+					onRowClick={this.onRowClick}
 					onSelectionChange={() => {}}
 				/>
 			</div>

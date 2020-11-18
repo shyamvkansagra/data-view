@@ -8,21 +8,27 @@ import './dataTable.css';
 
 class DataTable extends React.Component {
 	render() {
-		const { rows, columns } = this.props;
+		const { rows, columns, onRowClick } = this.props;
 		return (
 			<div>
 				<h3>Data table</h3>
 				<table className="table-container">
 					<thead>
 						<tr>
-							{columns.map(ctr => (
-								<th key={ctr.id}>{ctr.label}</th>
+							{columns.map(c => (
+								<th key={c.id}>{c.label}</th>
 							))}
 						</tr>
 					</thead>
 					<tbody>
-						{rows.map(dr => (
-							<Row key={dr.id} rowData={dr} />
+						{rows.map((r, index) => (
+							<Row
+								key={r.id}
+								indexVal={index}
+								rowData={r}
+								onRowClick={onRowClick}
+								columns={columns}
+							/>
 						))}
 					</tbody>
 				</table>

@@ -1,3 +1,7 @@
 .table-container {
 	margin: 0 auto;
 }
+
+.right-align {
+	text-align: end;
+}
