@@ -46,31 +46,30 @@ const columns = [
 		"id": 1,
 		"label": "Album ID",
 		"numeric": true,
-		"width": "10px"
+		"width": "10%"
 	},
 	{
 		"id": 2,
 		"label": "ID",
 		"numeric": true,
-		"width": "10px"
+		"width": "50px"
 	},
 	{
 		"id": 3,
 		"label": "Title",
 		"numeric": false,
-		"width": "10px"
 	},
 	{
 		"id": 4,
 		"label": "Link",
 		"numeric": true,
-		"width": "10px"
+		"width": "100px"
 	},
 	{
 		"id": 5,
 		"label": "Thumbnail",
 		"numeric": false,
-		"width": "10px"
+		"width": ""
 	}
 ];
 

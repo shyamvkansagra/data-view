@@ -4,7 +4,7 @@ import React from 'react';
 import Row from './Row';
 
 // Import styles
-import './dataTable.css';
+import './dataTable.scss';
 
 class DataTable extends React.Component {
 	render() {
@@ -16,7 +16,7 @@ class DataTable extends React.Component {
 					<thead>
 						<tr>
 							{columns.map(c => (
-								<th key={c.id}>{c.label}</th>
+								<th key={c.id} style={{ width: c.width || "auto" }}>{c.label}</th>
 							))}
 						</tr>
 					</thead>
