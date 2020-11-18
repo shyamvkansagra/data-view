@@ -3,23 +3,29 @@ import React from 'react';
 // Import components
 import Row from './Row';
 
-// Import data API
-// import DataAPIs from '../server-simulation/server';
+// Import styles
+import './dataTable.css';
 
 class DataTable extends React.Component {
 	render() {
 		const { rows, columns } = this.props;
 		return (
 			<div>
-				<h3>Data table rows</h3>
-				<div className="data-table-header">
-					{columns.map(ctr => (
-						<span>{ctr.label}</span>
-					))}
-				</div>
-				<div>{rows.map(dr => (
-					<Row key={dr.id} rowData={dr} />
-				))}</div>
+				<h3>Data table</h3>
+				<table className="table-container">
+					<thead>
+						<tr>
+							{columns.map(ctr => (
+								<th key={ctr.id}>{ctr.label}</th>
+							))}
+						</tr>
+					</thead>
+					<tbody>
+						{rows.map(dr => (
+							<Row key={dr.id} rowData={dr} />
+						))}
+					</tbody>
+				</table>
 			</div>
 		);
 	}

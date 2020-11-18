@@ -9,12 +9,18 @@ import DataAPIs from '../server-simulation/server';
 const sampleColumns = [
 	{
 		"id": 1,
+		"label": "ID",
+		"numeric": true,
+		"width": "10px"
+	},
+	{
+		"id": 2,
 		"label": "Product",
 		"numeric": false,
 		"width": "10px"
 	},
 	{
-		"id": 2,
+		"id": 3,
 		"label": "Price",
 		"numeric": true,
 		"width": "10px"
@@ -50,20 +56,20 @@ const columns = [
 	},
 	{
 		"id": 3,
-		"label": "Thumbnail",
-		"numeric": false,
-		"width": "10px"
-	},
-	{
-		"id": 4,
 		"label": "Title",
 		"numeric": false,
 		"width": "10px"
 	},
 	{
-		"id": 5,
+		"id": 4,
 		"label": "Link",
 		"numeric": true,
+		"width": "10px"
+	},
+	{
+		"id": 5,
+		"label": "Thumbnail",
+		"numeric": false,
 		"width": "10px"
 	}
 ];

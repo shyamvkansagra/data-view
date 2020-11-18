@@ -4,16 +4,16 @@ class Row extends Component {
 	render() {
 		const { rowData } = this.props;
 		return (
-			<div className="row-container">
+			<tr className="row-container">
 				{Object.keys(rowData).map(rdk => {
 					if (rdk === "url") {
-						return <a href={rowData[rdk]}>Link</a>
+						return <td><a href={rowData[rdk]}>Link</a></td>
 					} else if (rdk === "thumbnailUrl") {
-						return <img src={rowData[rdk]} alt="thumbnail" />
+						return <td><img src={rowData[rdk]} alt="thumbnail" /></td>
 					}
-					return <span>{rowData[rdk]}</span>
+					return <td><span>{rowData[rdk]}</span></td>
 				})}
-			</div>
+			</tr>
 		);
 	}
 }
