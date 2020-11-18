@@ -17,7 +17,7 @@ const sampleColumns = [
 		"id": 2,
 		"label": "Product",
 		"numeric": false,
-		"width": "10px"
+		"width": "200px"
 	},
 	{
 		"id": 3,
