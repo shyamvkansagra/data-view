@@ -43,30 +43,31 @@ class DataTable extends React.Component {
 		const { selectedRows } = this.state;
 		return (
 			<div>
-				<h3>Data table</h3>
-				<table className="table-container" cellSpacing="0" cellPadding="0">
-					<thead>
-						<tr>
-							<th><input onClick={this.toggleSelectAll} checked={selectedRows.length === rows.length} type="checkbox"></input></th>
-							{columns.map(c => (
-								<th key={c.id} style={{ width: c.width || "auto" }}>{c.label}</th>
+				<h3>Acme Inc. data table</h3>
+					<table className="table-container" cellSpacing="0" cellPadding="0">
+						<thead>
+							<tr>
+								<th><input onChange={() => {}} onClick={this.toggleSelectAll} checked={selectedRows.length === rows.length} type="checkbox"></input></th>
+								{columns.map(c => (
+									<th key={c.id} style={{ width: c.width || "auto" }}>{c.label}</th>
+								))}
+							</tr>
+						</thead>
+						
+						<tbody>
+							{rows.map((r, index) => (
+								<Row
+									key={r.id}
+									isChecked={selectedRows.indexOf(r.id) > -1}
+									toggleRowSelection={this.toggleRowSelection}
+									indexVal={index}
+									rowData={r}
+									onRowClick={onRowClick}
+									columns={columns}
+								/>
 							))}
-						</tr>
-					</thead>
-					<tbody>
-						{rows.map((r, index) => (
-							<Row
-								key={r.id}
-								isChecked={selectedRows.indexOf(r.id) > -1}
-								toggleRowSelection={this.toggleRowSelection}
-								indexVal={index}
-								rowData={r}
-								onRowClick={onRowClick}
-								columns={columns}
-							/>
-						))}
-					</tbody>
-				</table>
+						</tbody>
+					</table>
 			</div>
 		);
 	}

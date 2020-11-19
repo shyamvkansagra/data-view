@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 
 // Import components
 import DataTable from '../datatable';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 // Import data API
 import DataAPIs from '../server-simulation/server';
+
+// Import styles
+import './page.scss';
 
 const sampleColumns = [
 	{
@@ -97,10 +101,18 @@ class Page extends Component {
 		alert("You clicked row no: " + rowIndex + "\nData: " + JSON.stringify(rowData));
 	}
 
+	fetchData = () => {
+		const { limit, offset, dataRows } = this.state;
+		const newOffset = offset + limit;
+		const newData = DataAPIs.getData(limit, newOffset);
+		this.setState({ offset: newOffset, dataRows: [...dataRows, ...newData] });
+	}
+
 	render() {
 		const { view, dataRows, isLoaded } = this.state;
 		const columnsToShow = view === "sample" ? sampleColumns : columns;
 		const rowsToShow = view === "sample" ? sampleRows : dataRows;
+		const totalRows = view === "sample" ? 2 : 5000;
 		if (!isLoaded) {
 			return (
 				<div>Loading...</div>
@@ -108,13 +120,21 @@ class Page extends Component {
 		}
 		return (
 			<div>
-				<button onClick={this.switchView}>Switch sample/real data</button>
-				<DataTable
-					columns={columnsToShow}
-					rows={rowsToShow}
-					onRowClick={this.onRowClick}
-					onSelectionChange={() => {}}
-				/>
+				<button className="data-switcher" onClick={this.switchView}>Switch sample/real data</button>
+				<InfiniteScroll
+					dataLength={rowsToShow.length}
+					hasMore={rowsToShow.length < totalRows}
+					next={this.fetchData}
+					loader={<h4>Loading...</h4>}
+				>
+					<DataTable
+						loadMore={this.fetchData}
+						columns={columnsToShow}
+						rows={rowsToShow}
+						onRowClick={this.onRowClick}
+						onSelectionChange={() => {}}
+					/>
+				</InfiniteScroll>
 			</div>
 		);
 	}

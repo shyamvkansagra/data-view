@@ -13,6 +13,7 @@ class Row extends Component {
 							toggleRowSelection(rowData.id);
 						}}
 						checked={isChecked}
+						onChange={() => {}}
 					/>
 				</td>
 				{Object.keys(rowData).map((rdk, idx) => {
