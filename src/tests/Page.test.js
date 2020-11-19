@@ -8,7 +8,7 @@ test('renders switch button', () => {
   expect(btnSwitchElement).toBeInTheDocument();
 });
 
-test('loadAll works', () => {
+test('loadAll works', (done) => {
 	DataAPIs.loadAll(function() {
 		try {
 			done();
@@ -20,7 +20,7 @@ test('loadAll works', () => {
 
 test('load specific data works', () => {
 	DataAPIs.loadAll(function() {
-		expect(DataAPIs.getData(1, 0)).toBe([{
+		expect(DataAPIs.getData(1, 0)).toStrictEqual([{
 			albumId: 1,
 			id: 1,
 			thumbnailUrl: "https://via.placeholder.com/150/92c952",
