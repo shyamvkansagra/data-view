@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# Data view table
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is about creating a dynamic Data table component with some unique features. It is created using create-react-app. \
+Check out the working demo at: [Data view](https://shyamvkansagra.github.io/data-view/)
 
-## Available Scripts
+## Run locally
 
-In the project directory, you can run:
+git clone https://github.com/shyamvkansagra/data-view.git
 
-### `yarn start`
+npm install
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+yarn start
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This should start application at localhost:3000
 
-### `yarn test`
+## About this project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This project aims to create a re-usable "data table" component which can be called from your components with simply passing row and column related info. You can pass more arguments too as you scale your app. Data table component is supposed to handle any type of dynamic data. Hence, such components can help you create tabular view of your data in easier manner if you are a developer.
 
-### `yarn build`
+### Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- If your column has 'numeric' attribute, data will be right aligned in that column
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Can take column width as a prop and render accordingly, falls back to default width
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Click events on individual rows
 
-### `yarn eject`
+- Checkboxes to select rows individually or select all from heading row
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Infinite scroll, load data as and when you scroll down
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Can handle large number of rows
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Tests
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Libraries used
 
-## Learn More
+- react
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- SASS
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- react-infinite-scroll-component
 
-### Code Splitting
+- react-test-renderer
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Design overview
 
-### Analyzing the Bundle Size
+This application uses data available at [https://jsonplaceholder.typicode.com/photos](https://jsonplaceholder.typicode.com/photos). Since all of the data (which is 5000 rows) comes in one call, it takes upto 3-4 seconds sometimes to load it on client. We can create DB and store this info there to get data with our APIs in pagination manner, but since focus is React, I skipped that step and stored the data in local storage for ease of use. Application performs loading step for the very first time. Once data is in local storage, I am mimicking behaviour of async calls by getting only 10 rows per call by using limit and offset.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+For the view part, I created `page` and `datatable` components. Page component will be using the data table component internally. Data table can be invoked with either sample data, or with API like data. I have added a button to switch between sample data and real data for POC purpose.
 
-### Making a Progressive Web App
+To style the components, I added and used SASS. To create infinite scroll behaviour, I have used a library which is lightweight (4kb) and is easy to use. Whenever you scroll down, next data will be fetched and displayed. 'Loading' will be shown while data fetch is in progress. Once data hits the last value, infinite scroll will finish.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Finally, I added the tests with jest (create-react-app's in-built). Tests basically aim to make sure component rendering is fine and desired API calls and UI elements work as expected. The by default command to run tests, will run all our defined tests in 'watch' mode, as in whenever you save, tests will run automatically. You can also use `CI=true yarn test` to run it once without watch behaviour.
 
-### Advanced Configuration
+Once all above was done, I deployed the app on gitHub pages. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Future ideas
 
-### Deployment
+While working on this project, I had few ideas which I would like to implement in future to make this a complete stand alone solution:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Implement server and DB to store and perform operations on table data
 
-### `yarn build` fails to minify
+- Enhance the UI (create mobile view UI, use proper icons, fonts and colors)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Use Virtualization \
+(I tried adding it in this version. Checked out 2 libraries which help achieve virtualization, but both of them were breaking current implementation and were impacting existing required features. So I tried creating my own virtualization, but it had issues with scroll event detection, so left it for future work)
+
+- Enhance column and row params to have even more detailed metadata, such that our "data table" component can display them even better (e.g. rows to have 'type' key to indicate what type of data it is, or columns to have 'order' key to show rows and heading in proper order)
