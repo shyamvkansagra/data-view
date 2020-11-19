@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot renders 1`] = `
+<div>
+  <h3>
+    Acme Inc. data table
+  </h3>
+  <table
+    cellPadding="0"
+    cellSpacing="0"
+    className="table-container"
+  >
+    <thead>
+      <tr>
+        <th>
+          <input
+            checked={true}
+            onChange={[Function]}
+            onClick={[Function]}
+            type="checkbox"
+          />
+        </th>
+      </tr>
+    </thead>
+    <tbody />
+  </table>
+</div>
+`;

@@ -128,7 +128,6 @@ class Page extends Component {
 					loader={<h4>Loading...</h4>}
 				>
 					<DataTable
-						loadMore={this.fetchData}
 						columns={columnsToShow}
 						rows={rowsToShow}
 						onRowClick={this.onRowClick}
