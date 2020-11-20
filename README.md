@@ -65,7 +65,4 @@ While working on this project, I had few ideas which I would like to implement i
 
 - Add validations at data level
 
-- Use Virtualization \
-(I have added it in my other branch. However, styles are broken due to the library usage. I tried implementing without libraries, but scroll event was not working as expected when I wanted, needs more debugging - WIP. You can check out virtualized infinite scroll's working demo on my branch https://github.com/shyamvkansagra/data-view/tree/virtualized-table locally)
-
 - Enhance column and row params to have even more detailed metadata, such that our "data table" component can display them even better (e.g. rows to have 'type' key to indicate what type of data it is, or columns to have 'order' key to show rows and heading in proper order)
