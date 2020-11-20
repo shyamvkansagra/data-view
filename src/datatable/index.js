@@ -7,10 +7,6 @@ import InfiniteScroll from 'react-virtualized-infinite-scroll';
 // Import styles
 import './dataTable.scss';
 
-// const itemHeight = 100;
-// const windowHeight = 800;
-// let scrollTop = 0;
-
 class DataTable extends React.Component {
 	state = {
 		selectedRows: [],
@@ -31,8 +27,10 @@ class DataTable extends React.Component {
 		const { selectedRows } = this.state;
 		const { rows } = this.props;
 		const newSelectedRows = Array.from(selectedRows);
+		const checkboxElems = document.querySelectorAll('input[type="checkbox"]');
 		if (newSelectedRows.length) {
 			this.setState({ selectedRows: [] });
+			checkboxElems.forEach(cb => cb.checked = false);
 		} else {
 			rows.forEach(r => {
 				if (newSelectedRows.indexOf(r.id) < 0) {
@@ -40,6 +38,7 @@ class DataTable extends React.Component {
 				}
 			});
 			this.setState({ selectedRows: newSelectedRows });
+			checkboxElems.forEach(cb => cb.checked = true);
 		}
 	}
 

@@ -8,11 +8,11 @@ class Row extends Component {
 				<td>
 					<input
 						type="checkbox"
+						id={rowData.id}
 						onClick={e => {
 							e.stopPropagation();
 							toggleRowSelection(rowData.id);
 						}}
-						checked={isChecked}
 						onChange={() => {}}
 					/>
 				</td>

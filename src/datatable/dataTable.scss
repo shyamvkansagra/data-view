@@ -29,6 +29,10 @@
 		cursor: pointer;
 		background: #eee;
 	}
+
+	.Grid.VirtualScroll {
+		outline: none;
+	}
 }
 
 .right-align {
