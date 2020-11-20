@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // Import components
 import Row from './Row';
@@ -108,3 +109,15 @@ class DataTable extends React.Component {
 }
 
 export default DataTable;
+
+DataTable.propTypes = {
+	rows: PropTypes.array,
+	columns: PropTypes.array,
+	fetchData: PropTypes.func
+}
+
+DataTable.defaulProps = {
+	rows: [],
+	columns: [],
+	fetchData: () => {}
+}

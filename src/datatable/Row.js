@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Row extends Component {
 	render() {
-		const { rowData, onRowClick, indexVal, columns, isChecked, toggleRowSelection } = this.props;
+		const { rowData, onRowClick, indexVal, columns, toggleRowSelection } = this.props;
 		return (
 			<tr className="row-container" onClick={() => onRowClick(rowData, indexVal+1)}>
 				<td>
@@ -37,3 +38,18 @@ class Row extends Component {
 }
 
 export default Row;
+
+Row.propTypes = {
+	rowData: PropTypes.object,
+	onRowClick: PropTypes.func,
+	indexVal: PropTypes.number,
+	columns: PropTypes.array,
+	toggleRowSelection: PropTypes.func
+}
+
+Row.defaultProps = {
+	rowData: {},
+	onRowClick: () => {},
+	columns: [],
+	toggleRowSelection: () => {}
+}
