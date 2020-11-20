@@ -39,17 +39,17 @@ This project aims to create a re-usable "data table" component which can be call
 
 - SASS
 
-- react-infinite-scroll-component
+- react-virtualized-infinite-scroll
 
 - react-test-renderer
 
 ### Design overview
 
-This application uses data available at [https://jsonplaceholder.typicode.com/photos](https://jsonplaceholder.typicode.com/photos). Since all of the data (which is 5000 rows) comes in one call, it takes upto 3-4 seconds sometimes to load it on client. We can create DB and store this info there to get data with our APIs in pagination manner, but since focus is React, I skipped that step and stored the data in local storage for ease of use. Application performs loading step for the very first time. Once data is in local storage, I am mimicking behaviour of async calls by getting only 10 rows per call by using limit and offset.
+This application uses data available at [https://jsonplaceholder.typicode.com/photos](https://jsonplaceholder.typicode.com/photos). Since all of the data (which is 5000 rows) comes in one call, it takes upto 2-3 seconds sometimes to load it on client. We can create DB and store this info there to get data with our APIs in pagination manner, but since focus is React, I skipped that step and stored the data in local storage for ease of use. Application performs loading step for the very first time. Once data is in local storage, I am mimicking behaviour of async calls by getting only 10 rows per call by using limit and offset.
 
-For the view part, I created `page` and `datatable` components. Page component will be using the data table component internally. Data table can be invoked with either sample data, or with API like data. I have added a button to switch between sample data and real data for POC purpose.
+For the view part, I created `page` and `datatable` components. Page component will be using the data table component internally. Data table can be invoked by simply passing the proper data.
 
-To style the components, I added and used SASS. To create infinite scroll behaviour, I have used a library which is lightweight (4kb) and is easy to use. Whenever you scroll down, next data will be fetched and displayed. 'Loading' will be shown while data fetch is in progress. Once data hits the last value, infinite scroll will finish.
+To style the components, I added and used SASS. To create infinite scroll and virtualization behaviour, I have used a library. Whenever you scroll down, next data will be fetched and displayed. At a time, only limited number of rows which are required for display will be present in DOM.
 
 Finally, I added the tests with jest (create-react-app's in-built). Tests basically aim to make sure component rendering is fine and desired API calls and UI elements work as expected. The by default command to run tests, will run all our defined tests in 'watch' mode, as in whenever you save, tests will run automatically. You can also use `CI=true yarn test` to run it once without watch behaviour.
 
@@ -62,6 +62,8 @@ While working on this project, I had few ideas which I would like to implement i
 - Implement server and DB to store and perform operations on table data
 
 - Enhance the UI (create mobile view UI, use proper icons, fonts and colors)
+
+- Add validations at data level
 
 - Use Virtualization \
 (I have added it in my other branch. However, styles are broken due to the library usage. I tried implementing without libraries, but scroll event was not working as expected when I wanted, needs more debugging - WIP. You can check out virtualized infinite scroll's working demo on my branch https://github.com/shyamvkansagra/data-view/tree/virtualized-table locally)

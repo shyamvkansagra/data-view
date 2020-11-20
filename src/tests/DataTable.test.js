@@ -9,6 +9,7 @@ test("snapshot renders", () => {
 			rows={[]}
 			onRowClick={() => {}}
 			onSelectionChange={() => {}}
+			fetchData={() => {}}
 		/>
 	);
 	let tree = component.toJSON();
