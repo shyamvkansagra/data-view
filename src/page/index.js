@@ -9,41 +9,6 @@ import DataAPIs from '../server-simulation/server';
 // Import styles
 import './page.scss';
 
-const sampleColumns = [
-	{
-		"id": 1,
-		"label": "ID",
-		"numeric": true,
-		"width": "10px"
-	},
-	{
-		"id": 2,
-		"label": "Product",
-		"numeric": false,
-		"width": "200px"
-	},
-	{
-		"id": 3,
-		"label": "Price",
-		"numeric": true,
-		"width": "10px"
-	}
-];
-
-const sampleRows = [
-	{
-		"id": 1,
-		"product": "abc",
-		"price": 15.2
-	},
-	{
-		"id": 2,
-		"product": <div><span>React node product</span></div>,
-		"price": "$15.5"
-	}
-];
-
-
 const columns = [
 	{
 		"id": 1,
@@ -82,7 +47,6 @@ class Page extends Component {
 		dataRows: [],
 		limit: 10,
 		offset: 0,
-		view: "real",
 		isLoaded: false
 	};
 
@@ -109,10 +73,9 @@ class Page extends Component {
 	}
 
 	render() {
-		const { view, dataRows, isLoaded } = this.state;
-		const columnsToShow = view === "sample" ? sampleColumns : columns;
-		const rowsToShow = view === "sample" ? sampleRows : dataRows;
-		const totalRows = view === "sample" ? 2 : 5000;
+		const { dataRows, isLoaded } = this.state;
+		const columnsToShow = columns;
+		const rowsToShow = dataRows;
 		if (!isLoaded) {
 			return (
 				<div>Loading...</div>
