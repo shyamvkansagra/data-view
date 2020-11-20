@@ -64,6 +64,6 @@ While working on this project, I had few ideas which I would like to implement i
 - Enhance the UI (create mobile view UI, use proper icons, fonts and colors)
 
 - Use Virtualization \
-(I tried adding it in this version. Checked out 2 libraries which help achieve virtualization, but both of them were breaking current implementation and were impacting existing required features. So I tried creating my own virtualization, but it had issues with scroll event detection, so left it for future work)
+(I tried adding it in this version. Checked out 2 libraries which help achieve virtualization, but both of them were breaking current implementation and were impacting existing required features. So I tried creating my own virtualization, but it had issues with scroll event detection, so left it for future work. Check my WIP in another branch [https://github.com/shyamvkansagra/data-view/tree/virtualized-table] (https://github.com/shyamvkansagra/data-view/tree/virtualized-table))
 
 - Enhance column and row params to have even more detailed metadata, such that our "data table" component can display them even better (e.g. rows to have 'type' key to indicate what type of data it is, or columns to have 'order' key to show rows and heading in proper order)
