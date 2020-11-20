@@ -62,6 +62,7 @@ const columns = [
 		"id": 3,
 		"label": "Title",
 		"numeric": false,
+		"width": "500px"
 	},
 	{
 		"id": 4,

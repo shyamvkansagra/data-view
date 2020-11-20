@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class Row extends Component {
 	render() {
 		const { rowData, onRowClick, indexVal, columns, isChecked, toggleRowSelection } = this.props;
-		console.log(columns);
 		return (
 			<tr className="row-container" onClick={() => onRowClick(rowData, indexVal+1)}>
 				<td>
