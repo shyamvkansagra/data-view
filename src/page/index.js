@@ -121,19 +121,20 @@ class Page extends Component {
 		return (
 			<div>
 				<button className="data-switcher" onClick={this.switchView}>Switch sample/real data</button>
-				<InfiniteScroll
+				{/* <InfiniteScroll
 					dataLength={rowsToShow.length}
 					hasMore={rowsToShow.length < totalRows}
 					next={this.fetchData}
 					loader={<h4>Loading...</h4>}
-				>
+				> */}
 					<DataTable
+						fetchData={this.fetchData}
 						columns={columnsToShow}
 						rows={rowsToShow}
 						onRowClick={this.onRowClick}
 						onSelectionChange={() => {}}
 					/>
-				</InfiniteScroll>
+				{/* </InfiniteScroll> */}
 			</div>
 		);
 	}
