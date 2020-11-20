@@ -2,13 +2,14 @@ import React from 'react';
 
 // Import components
 import Row from './Row';
+import InfiniteScroll from 'react-virtualized-infinite-scroll';
 
 // Import styles
 import './dataTable.scss';
 
 class DataTable extends React.Component {
 	state = {
-		selectedRows: []
+		selectedRows: [],
 	}
 
 	toggleRowSelection = (id) => {
@@ -26,8 +27,10 @@ class DataTable extends React.Component {
 		const { selectedRows } = this.state;
 		const { rows } = this.props;
 		const newSelectedRows = Array.from(selectedRows);
+		const checkboxElems = document.querySelectorAll('input[type="checkbox"]');
 		if (newSelectedRows.length) {
 			this.setState({ selectedRows: [] });
+			checkboxElems.forEach(cb => cb.checked = false);
 		} else {
 			rows.forEach(r => {
 				if (newSelectedRows.indexOf(r.id) < 0) {
@@ -35,12 +38,28 @@ class DataTable extends React.Component {
 				}
 			});
 			this.setState({ selectedRows: newSelectedRows });
+			checkboxElems.forEach(cb => cb.checked = true);
 		}
 	}
 
-	render() {
-		const { rows, columns, onRowClick } = this.props;
+	renderRow = (r) => {
 		const { selectedRows } = this.state;
+		const { columns, onRowClick } = this.props;
+		return <Row
+			key={r.id}
+			isChecked={selectedRows.indexOf(r.id) > -1}
+			toggleRowSelection={this.toggleRowSelection}
+			indexVal={r.id - 1}
+			rowData={r}
+			onRowClick={onRowClick}
+			columns={columns}
+		/>
+	}
+
+	render() {
+		const { rows, columns, fetchData } = this.props;
+		const { selectedRows } = this.state;
+
 		return (
 			<div>
 				<h3>Acme Inc. data table</h3>
@@ -55,7 +74,22 @@ class DataTable extends React.Component {
 						</thead>
 						
 						<tbody>
-							{rows.map((r, index) => (
+							<InfiniteScroll
+                loadMore={fetchData}
+                renderRow={this.renderRow}
+                rowHeight={100}
+                threshold={2}
+                data={rows}
+                renderLoading={(
+                    <div style={{ height: 40 }}>
+                        Loading...
+                    </div>
+                )}
+                containerHeight={800}
+                ref={(infiniteScroll) => this.infiniteScroll = infiniteScroll}
+                scrollRef={(virtualScroll) => this.virtualScroll = virtualScroll}
+            />
+							{/* {rows.map((r, index) => (
 								<Row
 									key={r.id}
 									isChecked={selectedRows.indexOf(r.id) > -1}
@@ -65,7 +99,7 @@ class DataTable extends React.Component {
 									onRowClick={onRowClick}
 									columns={columns}
 								/>
-							))}
+							))} */}
 						</tbody>
 					</table>
 			</div>

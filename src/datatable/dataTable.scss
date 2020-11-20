@@ -15,11 +15,23 @@
 			height: 80px;
 			padding: 10px;
 		}
+
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		td {
+			width: auto;
+		}
 	}
 
 	.row-container:hover {
 		cursor: pointer;
 		background: #eee;
+	}
+
+	.Grid.VirtualScroll {
+		outline: none;
 	}
 }
 
