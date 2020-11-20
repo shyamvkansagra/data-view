@@ -120,7 +120,7 @@ class Page extends Component {
 		}
 		return (
 			<div>
-				<button className="data-switcher" onClick={this.switchView}>Switch sample/real data</button>
+				{/* <button className="data-switcher" onClick={this.switchView}>Switch sample/real data</button> */}
 				{/* <InfiniteScroll
 					dataLength={rowsToShow.length}
 					hasMore={rowsToShow.length < totalRows}
